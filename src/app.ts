@@ -1,14 +1,21 @@
 import express from "express";
+import { apiRoutes } from "./routes/apiRoutes";
 import { pageRoutes } from "./routes/pageRoutes";
-// 🎯 TODO 5: import { apiRoutes } from "./routes/apiRoutes";
 
-const app = express();
+const app= express();
+const PORT = 3000;
+
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
-app.set("view engine", "ejs");
-app.set("views", "./src/views");
-app.use(pageRoutes);
-// 🎯 TODO 6: app.use(apiRoutes);
+app.use(express.urlencoded({ extended: true }))
 
-app.listen(3000, () => console.log("✅ O pedido está indo"));
+app.use(express.static("public"));
+
+app.set("view engine", "ejs");
+app.set("views","./src/views");
+
+app.use("/", pageRoutes);
+app.use("/api", apiRoutes);
+
+app.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
+});
