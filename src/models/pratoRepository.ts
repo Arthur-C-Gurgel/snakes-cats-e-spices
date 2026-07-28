@@ -42,16 +42,15 @@ export class pratoRepository {
 
     async cadastrar(prato: Prato): Promise<Prato> {
         const pratos = await this.loadPratos();
-
-        const nextID =
-            (pratos.length > 0 ? pratos[pratos.length - 1].id : 0) + 1;
-
+    
+        const nextID = (pratos.at(-1)?.id ?? 0) + 1;
+    
         prato.id = nextID;
-
+    
         pratos.push(prato);
-
+    
         await this.savePratos(pratos);
-
+    
         return prato;
     }
 

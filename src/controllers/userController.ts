@@ -32,32 +32,36 @@ export async function listarPratos(req: Request, res: Response) {
 }
 
 export async function cadastrarPrato(req: Request, res: Response) {
-try {
-    const { nome, preco, descricao } = req.body;
+    try {
+        const { nome, preco, descricao } = req.body;
 
-    if (!nome || nome.trim() === "") {
-        return res.status(400).json({
-            sucess:false,
-            mensagem:"Por favor, informe a descrição do prato."
+        if (!nome || nome.trim() === "") {
+            return res.status(400).json({
+                success: false,
+                mensagem: "Por favor, informe a descrição do prato."
+            });
+        }
+
+        const prato = new Prato(
+            nome,
+            Number(preco),
+            descricao
+        );
+
+        await repo.cadastrar(prato);
+
+        return res.status(201).json({
+            success: true,
+            message: "Prato cadastrado com sucesso.",
+            prato
+        });
+
+    } catch {
+        return res.status(500).json({
+            success: false,
+            message: "Falha ao cadastrar o prato."
         });
     }
-
-    const prato = new Prato(nome, Number(preco), descricao);
-
-    await repo.cadastrar(prato);
-
-    return res.status(201).json({
-        success: true,
-        message: "Prato cadastrado com sucesso.",
-        prato
-    });
-
-} catch {
-    return res.status(500).json({
-        success: false,
-        message: "Falha ao cadastrar o prato."
-    });
-}
 }
 
 export async function RemoverPrato(req: Request, res: Response) {
