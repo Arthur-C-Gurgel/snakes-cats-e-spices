@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cardápio</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            margin:40px;
+        }
+
+        table{
+            border-collapse: collapse;
+            width:100%;
+        }
+
+        th,td{
+            border-collapse: collapse;
+            width:100%;
+        }
+
+        th{
+            background:#eee;
+        }
+
+        form{
+            margin-bottom:30px;
+        }
+
+        input{
+            padding:8px;
+            margin-right:10px;
+        }
+
+        button{
+            padding:8px 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cardápio</h1>
+
+<form action="/pratos" method="POST"
+
+<input
+   type="text"
+   name="nome"
+   placeholder="Nome do prato"
+   required
+>
+<input
+        type="text"
+        name="descricao"
+        placeholder="Descrição"
+        required
+    >
+
+    <button>
+        Cadastrar
+    </button>
+
+</form>
+
+<table>
+
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Descrição</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    <% if(pratos.length === 0){ %>
+
+        <tr>
+            <td colspan="3">
+                Nenhum prato cadastrado.
+            </td>
+        </tr>
+
+    <% } %>
+
+    <% pratos.forEach(prato => { %>
+
+        <tr>
+            <td><%= prato.name %></td>
+            <td>R$ <%= prato.preco %></td>
+            <td><%= prato.descricao %></td>
+        </tr>
+
+    <% }) %>
+
+    </tbody>
+
+</table>
+
+<br>
+
+<a href="/">Voltar</a>
+</body>
+</html>
