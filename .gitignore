@@ -9,7 +9,7 @@ logs/
 # Variáveis de ambiente
 .env
 .env.*
-
+git restore --staged .
 # Dependências
 node_modules/
 
