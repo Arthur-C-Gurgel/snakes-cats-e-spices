@@ -1,4 +1,4 @@
-import { Prato } from "../Prato";
+import Prato from "../entities/pratoEntity";
 
 describe("Prato", () => {
 
