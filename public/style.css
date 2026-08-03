@@ -1,0 +1,81 @@
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* HERO */
+.hero {
+    background-image: url("c:\Users\a95691836\Downloads\Fancy restaurant.jpg"); /* coloque sua imagem aqui */
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    color: white;
+}
+
+.overlay {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 40px;
+}
+
+.hero button {
+    padding: 10px 20px;
+    background-color: #c49a6c;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* HORÁRIO */
+.horario {
+    background-color: #eae7e2;
+    text-align: center;
+    padding: 50px;
+}
+
+/* MAIS PEDIDOS */
+.pedidos {
+    background-color: black;
+    color: white;
+    padding: 40px;
+}
+
+.topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-cardapio {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/* CARDS */
+.cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.card {
+    width: 250px;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
