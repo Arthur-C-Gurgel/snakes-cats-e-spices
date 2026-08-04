@@ -1,11 +1,12 @@
 const botaoHero = document.querySelector(".hero button");
 
 botaoHero.addEventListener("click", () => {
-    alert("Bem-vindo ao Wrighters Fate!");
+    window.location.href = "/reservas";
 });
+
 
 const botaoCardapio = document.querySelector(".btn-cardapio");
 
 botaoCardapio.addEventListener("click", () => {
-    alert("Abrindo o cardápio completo...");
+    window.location.href = "/cardapio";
 });
