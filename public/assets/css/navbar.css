@@ -1,0 +1,95 @@
+/* =========================================
+   NAVBAR — Barra de navegação
+   ========================================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+.navbar .logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cor-texto-claro);
+    letter-spacing: 2px;
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.navbar .nav-links a {
+    color: var(--cor-texto-claro);
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.navbar .nav-links a:hover {
+    color: var(--cor-primaria);
+}
+
+.navbar .nav-links .btn-nav {
+    padding: 8px 22px;
+    border-radius: 25px;
+    background: var(--cor-primaria);
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.navbar .nav-links .btn-nav:hover {
+    background: var(--cor-primaria-hover);
+}
+
+/* Menu hambúrguer (mobile) */
+.navbar .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.navbar .menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .navbar .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 20px 0;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .navbar .nav-links.active {
+        display: flex;
+    }
+
+    .navbar .menu-toggle {
+        display: flex;
+    }
+}

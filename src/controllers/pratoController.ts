@@ -9,10 +9,7 @@ export class PratoController {
         try {
             const pratos = await repo.listar();
 
-            return res.render("pratos", {
-                pratos,
-                flash: null
-            });
+            return res.json(pratos);
         } catch {
             return res.status(500).json({
                 success: false,

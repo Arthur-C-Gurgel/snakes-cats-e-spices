@@ -110,4 +110,18 @@ export class AuthController {
             });
         }
     }
+
+    async getPerfil(req: Request, res: Response) {
+        const session = req.session as any;
+        if (session.usuario) {
+            return res.json({
+                success: true,
+                usuario: session.usuario
+            });
+        }
+        return res.status(401).json({
+            success: false,
+            message: "Não autenticado"
+        });
+    }
 }

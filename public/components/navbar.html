@@ -1,0 +1,30 @@
+<!-- =========================================
+     NAVBAR — Barra de navegação reutilizável
+     ========================================= -->
+<nav class="navbar">
+    <a href="/" class="logo">WRIGHTERS FATE</a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="nav-links" id="navLinks">
+        <a href="/">Início</a>
+        <a href="/cardapio">Cardápio</a>
+        <a href="/pedido">Pedido</a>
+        <a href="/perfil">Perfil</a>
+        <a href="/login" class="btn-nav">Entrar</a>
+    </div>
+</nav>
+
+<script>
+    // Menu hambúrguer (mobile)
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle?.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+    });
+</script>

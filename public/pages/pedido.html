@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos — Wrighters Fate</title>
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/cardapio.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR (componente) -->
+    <div id="navbar"></div>
+
+    <!-- CONTEÚDO -->
+    <section class="cardapio-page">
+        <h1>Meus Pedidos</h1>
+
+        <div id="pedidos-container">
+            <p style="text-align:center; color:#888; margin-top:40px;">
+                Carregando pedidos...
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER (componente) -->
+    <div id="footer"></div>
+
+    <!-- MODAL (componente) -->
+    <div id="modal-container"></div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/api.js"></script>
+    <script>
+        // Carregar navbar
+        fetch("../components/navbar.html").then(r => r.text()).then(html => {
+            document.getElementById("navbar").innerHTML = html;
+            const toggle = document.getElementById("menuToggle");
+            const links = document.getElementById("navLinks");
+            toggle?.addEventListener("click", () => links.classList.toggle("active"));
+        });
+
+        // Carregar footer
+        fetch("../components/footer.html").then(r => r.text()).then(html => {
+            document.getElementById("footer").innerHTML = html;
+        });
+
+        // Carregar modal
+        fetch("../components/modal.html").then(r => r.text()).then(html => {
+            document.getElementById("modal-container").innerHTML = html;
+        });
+    </script>
+    <script>
+        // Lógica de pedidos
+        document.addEventListener("DOMContentLoaded", async () => {
+            const container = document.getElementById("pedidos-container");
+
+            try {
+                const pedidos = await api.listarPedidos();
+                if (pedidos.length === 0) {
+                    container.innerHTML = `
+                        <div style="text-align:center; padding:60px 20px; color:#888;">
+                            <p style="font-size:1.2rem; margin-bottom:15px;">Você ainda não fez nenhum pedido.</p>
+                            <a href="/cardapio" class="btn">Ver Cardápio</a>
+                        </div>`;
+                } else {
+                    container.innerHTML = "";
+                    pedidos.forEach((pedido) => {
+                        const card = document.createElement("div");
+                        card.style.cssText = "background:#fff; border-radius:12px; padding:20px; margin-bottom:15px; box-shadow:0 2px 10px rgba(0,0,0,0.08);";
+                        card.innerHTML = `
+                            <h3 style="margin-bottom:10px;">Pedido #${pedido.id || "-"}</h3>
+                            <p><strong>Status:</strong> ${pedido.status || "Pendente"}</p>
+                            <p><strong>Total:</strong> R$ ${parseFloat(pedido.total || 0).toFixed(2)}</p>
+                            <p><strong>Data:</strong> ${pedido.data || "-"}</p>`;
+                        container.appendChild(card);
+                    });
+                }
+            } catch (err) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding:60px 20px; color:#888;">
+                        <p style="font-size:1.2rem; margin-bottom:15px;">Faça login para ver seus pedidos.</p>
+                        <a href="/login" class="btn">Fazer Login</a>
+                    </div>`;
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+/* =========================================
+   ADMIN — Painel administrativo
+   ========================================= */
+
+.admin-page {
+    padding: 100px 20px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.admin-page h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/* Sidebar */
+.admin-layout {
+    display: flex;
+    gap: 30px;
+}
+
+.admin-sidebar {
+    width: 220px;
+    flex-shrink: 0;
+}
+
+.admin-sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-sidebar nav a {
+    display: block;
+    padding: 12px 18px;
+    border-radius: 8px;
+    color: #555;
+    font-size: 0.95rem;
+    transition: background 0.3s, color 0.3s;
+}
+
+.admin-sidebar nav a:hover,
+.admin-sidebar nav a.active {
+    background: var(--cor-primaria);
+    color: #fff;
+}
+
+/* Conteúdo admin */
+.admin-content {
+    flex: 1;
+}
+
+.admin-content .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+.admin-content .card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--cor-fundo-claro);
+}
+
+/* Formulário admin */
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus,
+.admin-form select:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+}
+
+.admin-form button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background: var(--cor-primaria);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    align-self: flex-start;
+}
+
+.admin-form button:hover {
+    background: var(--cor-primaria-hover);
+}
+
+/* Tabela admin */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.admin-table th {
+    background: var(--cor-fundo-claro);
+    font-weight: 600;
+}
+
+.admin-table .btn-delete {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    background: #e74c3c;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.3s;
+}
+
+.admin-table .btn-delete:hover {
+    background: #c0392b;
+}
+
+@media (max-width: 768px) {
+    .admin-layout {
+        flex-direction: column;
+    }
+
+    .admin-sidebar {
+        width: 100%;
+    }
+
+    .admin-sidebar nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

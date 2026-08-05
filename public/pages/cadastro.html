@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro — Wrighters Fate</title>
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR (componente) -->
+    <div id="navbar"></div>
+
+    <!-- CONTEÚDO -->
+    <section class="auth-page">
+        <div class="auth-container">
+            <h2>Criar Conta</h2>
+
+            <div class="auth-message" id="authMessage"></div>
+
+            <form id="form-cadastro">
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" id="nome" placeholder="Seu nome completo" required>
+
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" placeholder="seu@email.com" required>
+
+                <label for="senha">Senha</label>
+                <input type="password" name="senha" id="senha" placeholder="Mínimo 6 caracteres" required>
+
+                <button type="submit" class="btn-auth">Cadastrar</button>
+            </form>
+
+            <p class="auth-link">
+                Já tem conta? <a href="/login">Faça login</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER (componente) -->
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/api.js"></script>
+    <script>
+        fetch("../components/navbar.html").then(r => r.text()).then(html => {
+            document.getElementById("navbar").innerHTML = html;
+            const toggle = document.getElementById("menuToggle");
+            const links = document.getElementById("navLinks");
+            toggle?.addEventListener("click", () => links.classList.toggle("active"));
+        });
+        fetch("../components/footer.html").then(r => r.text()).then(html => {
+            document.getElementById("footer").innerHTML = html;
+        });
+    </script>
+    <script src="../assets/js/cadastro.js"></script>
+
+</body>
+
+</html>

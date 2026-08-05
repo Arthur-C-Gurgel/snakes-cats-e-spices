@@ -1,0 +1,120 @@
+<!-- =========================================
+     MODAL — Modal reutilizável
+     ========================================= -->
+<div class="modal-overlay" id="modalOverlay" style="display:none;">
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <h3 id="modalTitle">Título</h3>
+            <button class="modal-close" id="modalClose">&times;</button>
+        </div>
+        <div class="modal-body" id="modalBody">
+            <p>Conteúdo do modal.</p>
+        </div>
+        <div class="modal-footer" id="modalFooter">
+            <button class="btn" id="modalConfirm">Confirmar</button>
+            <button class="btn btn-cancel" id="modalCancel">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+    }
+
+    .modal {
+        background: #fff;
+        border-radius: 14px;
+        width: 90%;
+        max-width: 450px;
+        padding: 30px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        animation: modalIn 0.3s ease;
+    }
+
+    @keyframes modalIn {
+        from { transform: translateY(-30px); opacity: 0; }
+        to   { transform: translateY(0);    opacity: 1; }
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .modal-header h3 {
+        font-size: 1.2rem;
+    }
+
+    .modal-close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #888;
+    }
+
+    .modal-close:hover {
+        color: #333;
+    }
+
+    .modal-body {
+        margin-bottom: 20px;
+        font-size: 0.95rem;
+        color: #555;
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    .modal-footer .btn-cancel {
+        background: #ddd;
+        color: #333;
+    }
+</style>
+
+<script>
+    // Controles do modal
+    const modalOverlay = document.getElementById("modalOverlay");
+    const modalClose = document.getElementById("modalClose");
+    const modalCancel = document.getElementById("modalCancel");
+
+    function abrirModal(titulo, conteudo, onConfirm) {
+        document.getElementById("modalTitle").textContent = titulo || "Título";
+        document.getElementById("modalBody").innerHTML = conteudo || "";
+        modalOverlay.style.display = "flex";
+
+        if (onConfirm) {
+            const btnConfirm = document.getElementById("modalConfirm");
+            btnConfirm.onclick = () => {
+                onConfirm();
+                fecharModal();
+            };
+        }
+    }
+
+    function fecharModal() {
+        modalOverlay.style.display = "none";
+    }
+
+    modalClose?.addEventListener("click", fecharModal);
+    modalCancel?.addEventListener("click", fecharModal);
+
+    modalOverlay?.addEventListener("click", (e) => {
+        if (e.target === modalOverlay) fecharModal();
+    });
+</script>
